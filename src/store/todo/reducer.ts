@@ -1,6 +1,7 @@
-import { todo } from "./types";
+import { Todo } from "./types";
+import { TodoActionTypes } from "./types";
 
-const initialState: todo = {
+const initialState: Todo = {
   lists: [
     {
       name: "ブログを確認",
@@ -13,6 +14,22 @@ const initialState: todo = {
   ],
 };
 
-export const todoReducer = (state = initialState, action: any): todo => {
-  return state;
+export const todoReducer = (
+  state = initialState,
+  action: TodoActionTypes
+): Todo => {
+  switch (action.type) {
+    case "DONE_TODO":
+      return {
+        lists: state.lists.map((list) => {
+          if (list.name !== action.name) return list;
+          return {
+            ...list,
+            complete: true,
+          };
+        }),
+      };
+    default:
+      return state;
+  }
 };

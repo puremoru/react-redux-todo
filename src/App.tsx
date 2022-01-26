@@ -1,10 +1,14 @@
 import React from "react";
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store/index";
 
 const App: React.FC = () => {
   const lists = useSelector((state: RootState) => state.todo.lists);
+  const dispatch = useDispatch();
+  const doneList = (name: string) => {
+    dispatch({ type: "DONE_TODO", name: name });
+  };
   return (
     <div className="App">
       <h1>ReduxでTodoリスト作成</h1>
@@ -13,7 +17,10 @@ const App: React.FC = () => {
         {lists
           .filter((list) => !list.complete)
           .map((list, index) => (
-            <div key={index}>{list.name}</div>
+            <div key={index}>
+              {list.name}
+              <button onClick={() => doneList(list.name)}>完了</button>
+            </div>
           ))}
       </ul>
       <h2>完了したTodoリスト</h2>
