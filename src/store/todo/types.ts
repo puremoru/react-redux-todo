@@ -18,4 +18,12 @@ interface DeleteTodoAction extends Action {
   name: string;
 }
 
-export type TodoActionTypes = DoneTodoAction | DeleteTodoAction;
+interface AddTodoAction extends Action {
+  type: typeof ActionTypes.addTodo;
+  payload: {
+    name: string;
+    complete: boolean;
+  };
+}
+
+export type TodoActionTypes = DoneTodoAction | DeleteTodoAction | AddTodoAction;

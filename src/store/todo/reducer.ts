@@ -34,6 +34,10 @@ export const todoReducer = (
       return {
         lists: state.lists.filter((list) => list.name !== action.name),
       };
+    case ActionTypes.addTodo:
+      return {
+        lists: [...state.lists, action.payload],
+      };
     default:
       return state;
   }
