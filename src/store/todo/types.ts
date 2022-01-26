@@ -13,4 +13,9 @@ interface DoneTodoAction extends Action {
   name: string;
 }
 
-export type TodoActionTypes = DoneTodoAction;
+interface DeleteTodoAction extends Action {
+  type: typeof ActionTypes.deleteTodo;
+  name: string;
+}
+
+export type TodoActionTypes = DoneTodoAction | DeleteTodoAction;

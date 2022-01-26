@@ -1,5 +1,6 @@
 import { Todo } from "./types";
 import { TodoActionTypes } from "./types";
+import { ActionTypes } from "../../utils/actionTypes";
 
 const initialState: Todo = {
   lists: [
@@ -19,7 +20,7 @@ export const todoReducer = (
   action: TodoActionTypes
 ): Todo => {
   switch (action.type) {
-    case "DONE_TODO":
+    case ActionTypes.doneTodo:
       return {
         lists: state.lists.map((list) => {
           if (list.name !== action.name) return list;
@@ -28,6 +29,10 @@ export const todoReducer = (
             complete: true,
           };
         }),
+      };
+    case ActionTypes.deleteTodo:
+      return {
+        lists: state.lists.filter((list) => list.name !== action.name),
       };
     default:
       return state;

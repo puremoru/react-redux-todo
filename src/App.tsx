@@ -9,6 +9,9 @@ const App: React.FC = () => {
   const doneList = (name: string) => {
     dispatch({ type: "DONE_TODO", name: name });
   };
+  const deleteList = (name: string) => {
+    dispatch({ type: "DELETE_TODO", name: name });
+  };
   return (
     <div className="App">
       <h1>ReduxでTodoリスト作成</h1>
@@ -20,6 +23,7 @@ const App: React.FC = () => {
             <div key={index}>
               {list.name}
               <button onClick={() => doneList(list.name)}>完了</button>
+              <button onClick={() => deleteList(list.name)}>削除</button>
             </div>
           ))}
       </ul>
